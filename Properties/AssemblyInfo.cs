@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("dcm")]
+[assembly: AssemblyTitle("Digital Color Meter")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("dcm")]
-[assembly: AssemblyCopyright("Copyright ©  2014")]
+[assembly: AssemblyProduct("Digital Color Meter")]
+[assembly: AssemblyCopyright("Copyright © 2014 Stian Hanger")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
