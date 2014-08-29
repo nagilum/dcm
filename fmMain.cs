@@ -42,10 +42,10 @@ namespace dcm
 
         private void fmMain_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.Space)
-                return;
-
-            var item = new ListViewItem(
+            // Add a new list item with the current color.
+            if (e.KeyCode == Keys.Space)
+            {
+                var item = new ListViewItem(
                 new string[]
                 {
                     this.tbRed.Text,
@@ -53,27 +53,38 @@ namespace dcm
                     this.tbBlue.Text
                 });
 
-            var r = 0;
-            var g = 0;
-            var b = 0;
+                var r = 0;
+                var g = 0;
+                var b = 0;
 
-            int.TryParse(this.tbRed.Text, out r);
-            int.TryParse(this.tbGreen.Text, out g);
-            int.TryParse(this.tbBlue.Text, out b);
+                int.TryParse(this.tbRed.Text, out r);
+                int.TryParse(this.tbGreen.Text, out g);
+                int.TryParse(this.tbBlue.Text, out b);
 
-            var bitmap = new Bitmap(16, 16);
-            var gfx = Graphics.FromImage(bitmap);
-            var brush = new SolidBrush(Color.FromArgb(r, g, b));
+                var bitmap = new Bitmap(16, 16);
+                var gfx = Graphics.FromImage(bitmap);
+                var brush = new SolidBrush(Color.FromArgb(r, g, b));
 
-            gfx.FillRectangle(
-                brush,
-                0, 0,
-                15, 15);
+                gfx.FillRectangle(
+                    brush,
+                    0, 0,
+                    15, 15);
 
-            this.ilColors.Images.Add((Image) bitmap);
-            item.ImageIndex = this.ilColors.Images.Count - 1;
-            
-            this.lvColors.Items.Add(item);
+                this.ilColors.Images.Add((Image)bitmap);
+                item.ImageIndex = this.ilColors.Images.Count - 1;
+
+                this.lvColors.Items.Add(item);
+            }
+
+            // Copy the RGB value to clipboard directly.
+            else if (e.Control &&
+                     e.KeyCode == Keys.C)
+            {
+                Clipboard.SetText(
+                    this.tbRed.Text + "," +
+                    this.tbGreen.Text + "," +
+                    this.tbBlue.Text);
+            }
         }
 
         private void refreshArea()

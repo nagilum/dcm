@@ -42,13 +42,13 @@
             this.chRed = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chGreen = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chBlue = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label4 = new System.Windows.Forms.Label();
             this.cmColorsPopup = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.miCopyRGB = new System.Windows.Forms.ToolStripMenuItem();
             this.miCopyR = new System.Windows.Forms.ToolStripMenuItem();
             this.miCopyG = new System.Windows.Forms.ToolStripMenuItem();
             this.miCopyB = new System.Windows.Forms.ToolStripMenuItem();
             this.ilColors = new System.Windows.Forms.ImageList(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbArea)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbColor)).BeginInit();
             this.cmColorsPopup.SuspendLayout();
@@ -157,15 +157,6 @@
             // 
             this.chBlue.Text = "Blue";
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(147, 215);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(165, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Press Space to grab current color";
-            // 
             // cmColorsPopup
             // 
             this.cmColorsPopup.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -210,11 +201,19 @@
             this.ilColors.ImageSize = new System.Drawing.Size(16, 16);
             this.ilColors.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // label4
+            // 
+            this.label4.Location = new System.Drawing.Point(147, 215);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(220, 31);
+            this.label4.TabIndex = 12;
+            this.label4.Text = "Press Space to save the current color or Ctrl+C to copy directly.";
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(380, 239);
+            this.ClientSize = new System.Drawing.Size(380, 251);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lvColors);
             this.Controls.Add(this.tbBlue);
