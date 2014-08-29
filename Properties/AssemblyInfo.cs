@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Digital Color Meter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Released under the MIT License")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Digital Color Meter")]
