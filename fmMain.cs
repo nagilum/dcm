@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -28,6 +29,9 @@ namespace dcm {
             InitializeComponent();
         }
 
+		/// <summary>
+		/// Form load and initialization.
+		/// </summary>
         private void fmMain_Load(object sender, EventArgs e) {
             this.lvColors.KeyDown += fmMain_KeyDown;
             this.tbRed.KeyDown += fmMain_KeyDown;
@@ -37,10 +41,13 @@ namespace dcm {
 			this.rbHEX.KeyDown += fmMain_KeyDown;
         }
 
+		/// <summary>
+		/// Key shortcut handler.
+		/// </summary>
         private void fmMain_KeyDown(object sender, KeyEventArgs e) {
-			var r = 0;
-			var g = 0;
-			var b = 0;
+			int r;
+			int g;
+			int b;
 
 			int.TryParse(this.tbRed.Text, out r);
 			int.TryParse(this.tbGreen.Text, out g);
@@ -60,7 +67,7 @@ namespace dcm {
             // Add a new list item with the current color.
             if (e.KeyCode == Keys.Space) {
                 var item = new ListViewItem(
-					new string[] {
+					new[] {
 						"",
 						rgb,
 						hex
@@ -75,7 +82,7 @@ namespace dcm {
                     0, 0,
                     15, 15);
 
-                this.ilColors.Images.Add((Image)bitmap);
+                this.ilColors.Images.Add(bitmap);
                 item.ImageIndex = this.ilColors.Images.Count - 1;
 
                 this.lvColors.Items.Add(item);
@@ -91,6 +98,9 @@ namespace dcm {
             }
         }
 
+		/// <summary>
+		/// Refreshes the zoomed in area.
+		/// </summary>
         private void refreshArea() {
             POINT mousePos;
             GetCursorPos(out mousePos);
@@ -137,6 +147,9 @@ namespace dcm {
             this.pbArea.Image = output;
         }
 
+		/// <summary>
+		/// Refresh the single color block and RGB values.
+		/// </summary>
         private void refreshSinglePixel() {
             POINT mousePos;
             GetCursorPos(out mousePos);
@@ -153,28 +166,40 @@ namespace dcm {
 
             this.pbColor.BackColor = color;
 
-            this.tbRed.Text = color.R.ToString();
-            this.tbGreen.Text = color.G.ToString();
-            this.tbBlue.Text = color.B.ToString();
+            this.tbRed.Text = color.R.ToString(CultureInfo.InvariantCulture);
+            this.tbGreen.Text = color.G.ToString(CultureInfo.InvariantCulture);
+            this.tbBlue.Text = color.B.ToString(CultureInfo.InvariantCulture);
         }
 
+		/// <summary>
+		/// Refresh ticker which forces the UI to update the color under the mouse pointer.
+		/// </summary>
         private void trRefresh_Tick(object sender, EventArgs e) {
             this.refreshArea();
             this.refreshSinglePixel();
         }
 
+		/// <summary>
+		/// Copies the HEX value of the selected color to clipboard.
+		/// </summary>
 		private void miCopyHEX_Click(object sender, EventArgs e) {
 			if (this.lvColors.SelectedItems.Count > 0)
 				Clipboard.SetText(
 					this.lvColors.SelectedItems[0].SubItems[2].Text);
 		}
 
+		/// <summary>
+		/// Copies the RGB value of the selected color to clipboard.
+		/// </summary>
         private void miCopyRGB_Click(object sender, EventArgs e) {
 			if (this.lvColors.SelectedItems.Count > 0)
 				Clipboard.SetText(
 					this.lvColors.SelectedItems[0].SubItems[1].Text);
         }
 
+		/// <summary>
+		/// Copies the red RGB value of the selected color to clipboard.
+		/// </summary>
         private void miCopyR_Click(object sender, EventArgs e) {
 			if (this.lvColors.SelectedItems.Count <= 0)
 				return;
@@ -183,6 +208,9 @@ namespace dcm {
 	        Clipboard.SetText(colors[0]);
         }
 
+		/// <summary>
+		/// Copies the green RGB value of the selected color to clipboard.
+		/// </summary>
         private void miCopyG_Click(object sender, EventArgs e) {
 			if (this.lvColors.SelectedItems.Count <= 0)
 				return;
@@ -191,6 +219,9 @@ namespace dcm {
 			Clipboard.SetText(colors[1]);
         }
 
+		/// <summary>
+		/// Copies the blue RGB value of the selected color to clipboard.
+		/// </summary>
         private void miCopyB_Click(object sender, EventArgs e) {
 			if (this.lvColors.SelectedItems.Count <= 0)
 				return;
